@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.date }}</p>
+        <p>{{ post.body }}</p>
+        <iframe src="{{ post.pdf_file.url }}" width="800px" height="1100px">
+            Your browser does not support PDF viewing. <a href="{{ post.pdf_file.url }}">Click here to download the PDF.</a>
+        </iframe>
+
+        <a class="download" href="{{ post.pdf_file.url }}">Click here to download the PDF.</a>
+    </section>
+{% endblock %}
