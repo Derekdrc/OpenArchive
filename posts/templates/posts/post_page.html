@@ -6,13 +6,12 @@
 
 {% block content %}
     <section>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.date }}</p>
-        <p>{{ post.body }}</p>
-        <iframe src="{{ post.pdf_file.url }}" width="800px" height="1100px">
-            Your browser does not support PDF viewing. <a href="{{ post.pdf_file.url }}">Click here to download the PDF.</a>
-        </iframe>
+        <h2 class="titles">{{ post.title }}</h2>
+        <h2 class="authors">Author(s): {{ post.author }}</h2>
+        
+        <h2>Abstract</h2>
+        <p>{{ post.abstract }}</p>
+        <a class="download" href="{{ post.pdf_file.url }}">View PDF</a>
+        <p>Submitted on: {{ post.date }}</p>
 
-        <a class="download" href="{{ post.pdf_file.url }}">Click here to download the PDF.</a>
-    </section>
 {% endblock %}

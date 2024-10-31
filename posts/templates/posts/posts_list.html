@@ -8,16 +8,53 @@
     <section>
     <h1>Posts</h1>
 
+    <h1 class="post_label">Computer Science</h1>
     {% for post in posts %}
-        <article class="post">
-            <h2>
-                <a href="{%  url 'posts:page' slug=post.slug %}">
-                    {{ post.title }}
-                </a>
-            </h2>
-            <p>{{ post.date }} by {{ post.author }}</p>
-            <p>{{ post.body }}</p>
-        </article>
+        {%if post.subject == 'Computer Science' %}
+            <article class="post">
+                
+                
+                <h2>
+                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p>{{ post.date }} by {{ post.author }}</p>
+                <p>{{ post.body }}</p>
+            </article>
+            {% endif %}
+        {% endfor %}
+
+    <h1 class='post_label'>Engineering</h1>    
+    {% for post in posts %}
+        {%if post.subject == 'Engineering' %}
+            <article class="post">
+                
+                <h2>
+                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p>{{ post.date }} by {{ post.author }}</p>
+                <p>{{ post.body }}</p>
+            </article>
+        {% endif %}
+    {% endfor %}
+
+    <h1 class='post_label'>English</h1>    
+    {% for post in posts %}
+        {%if post.subject == 'English' %}
+            <article class="post">
+                
+                <h2>
+                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p>{{ post.date }} by {{ post.author }}</p>
+                <p>{{ post.body }}</p>
+            </article>
+        {% endif %}
     {% endfor %}
 </section>
 {% endblock %}

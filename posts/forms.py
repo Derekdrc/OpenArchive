@@ -5,6 +5,6 @@ from .models import Post
 class CreatePost(forms.ModelForm):
     class Meta:
         model = models.Post
-        fields = ['title', 'body', 'slug', 'pdf_file']
+        fields = ['title', 'abstract', 'subject', 'pdf_file', 'license']
 
 
