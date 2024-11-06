@@ -7,8 +7,15 @@ from . import forms
 
 
 def posts_list(request):
-    posts = Post.objects.all().order_by('-date')
-    return render(request, 'posts/posts_list.html', {'posts': posts})
+    cs_posts = Post.objects.filter(subject="CS")
+    eng_posts = Post.objects.filter(subject="Eng")
+    engl_posts = Post.objects.filter(subject="Engl")
+
+    return render(request, 'posts/posts_list.html', {
+        'cs_posts': cs_posts,
+        'eng_posts': eng_posts,
+        'engl_posts': engl_posts
+    })
 
 
 def post_page(request, slug):

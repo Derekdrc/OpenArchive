@@ -5,56 +5,52 @@
 {% endblock %}
 
 {% block content %}
-    <section>
+<section>
     <h1>Posts</h1>
 
     <h1 class="post_label">Computer Science</h1>
-    {% for post in posts %}
-        {%if post.subject == 'Computer Science' %}
-            <article class="post">
-                
-                
-                <h2>
-                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
-                        {{ post.title }}
-                    </a>
-                </h2>
-                <p>{{ post.date }} by {{ post.author }}</p>
-                <p>{{ post.body }}</p>
-            </article>
-            {% endif %}
-        {% endfor %}
-
-    <h1 class='post_label'>Engineering</h1>    
-    {% for post in posts %}
-        {%if post.subject == 'Engineering' %}
-            <article class="post">
-                
-                <h2>
-                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
-                        {{ post.title }}
-                    </a>
-                </h2>
-                <p>{{ post.date }} by {{ post.author }}</p>
-                <p>{{ post.body }}</p>
-            </article>
-        {% endif %}
+    {% for post in cs_posts %}
+        <article class="post">
+            <h2>
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p>{{ post.date }} by {{ post.author }}</p>
+            <p>{{ post.body }}</p>
+        </article>
+    {% empty %}
+        <p>No posts in Computer Science.</p>
     {% endfor %}
 
-    <h1 class='post_label'>English</h1>    
-    {% for post in posts %}
-        {%if post.subject == 'English' %}
-            <article class="post">
-                
-                <h2>
-                    <a class="post_title" href="{%  url 'posts:page' slug=post.slug %}">
-                        {{ post.title }}
-                    </a>
-                </h2>
-                <p>{{ post.date }} by {{ post.author }}</p>
-                <p>{{ post.body }}</p>
-            </article>
-        {% endif %}
+    <h1 class="post_label">Engineering</h1>
+    {% for post in eng_posts %}
+        <article class="post">
+            <h2>
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p>{{ post.date }} by {{ post.author }}</p>
+            <p>{{ post.body }}</p>
+        </article>
+    {% empty %}
+        <p>No posts in Engineering.</p>
+    {% endfor %}
+
+    <h1 class="post_label">English</h1>
+    {% for post in engl_posts %}
+        <article class="post">
+            <h2>
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p>{{ post.date }} by {{ post.author }}</p>
+            <p>{{ post.body }}</p>
+        </article>
+    {% empty %}
+        <p>No posts in English.</p>
     {% endfor %}
 </section>
 {% endblock %}
