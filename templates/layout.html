@@ -24,6 +24,9 @@
             <span role="img" aria-label="Posts" title="Posts">📰</span> Posts
         </a> | 
         {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' %}">
+                <span role="img" aria-label="My Profile" title="My Profile">🚹</span> My Profile
+            </a> | 
             <a href="{% url 'posts:new-post' %}">
                 <span role="img" aria-label="New Post" title="New Post">🆕</span> Create New Post
             </a> | 
