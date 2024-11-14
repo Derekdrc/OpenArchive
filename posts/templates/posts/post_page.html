@@ -7,11 +7,12 @@
 {% block content %}
     <section>
         <h2 class="titles">{{ post.title }}</h2>
-        <h2 class="authors">Author(s): {{ post.author }}</h2>
+        <h2 class="authors">Author(s): {{ post.authors }}</h2>
         
         <h2>Abstract</h2>
         <p>{{ post.abstract }}</p>
         <a class="download" href="{{ post.pdf_file.url }}">View PDF</a>
-        <p>Submitted on: {{ post.date }}</p>
+        <p>Submitted on: {{ post.date }} by {{ post.uploader }}</p>
+        <p>Affiliated with {{ post.affiliation }}</p> 
 
 {% endblock %}

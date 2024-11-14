@@ -22,6 +22,8 @@ LICENSE_CHOICES = (
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    authors = models.CharField(max_length=255, default="Admin")
+    affiliation = models.CharField(max_length=255, default="LTU")
     abstract = models.TextField()
     slug = AutoSlugField(populate_from='title', unique=True)
     subject = models.CharField(max_length=8, choices=SUBJECT_CHOICES, default='Computer Science')
@@ -29,7 +31,7 @@ class Post(models.Model):
     #banner = models.ImageField(default='fallback.png', blank=True)
     pdf_file = models.FileField()
     license = models.CharField(max_length=8, choices=LICENSE_CHOICES, default='CC BY')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    uploader = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
