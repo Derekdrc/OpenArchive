@@ -10,11 +10,15 @@ def posts_list(request):
     cs_posts = Post.objects.filter(subject="CS")
     eng_posts = Post.objects.filter(subject="Eng")
     engl_posts = Post.objects.filter(subject="Engl")
+    ds_posts = Post.objects.filter(subject="DS")
+    math_posts = Post.objects.filter(subject="Math")
 
     return render(request, 'posts/posts_list.html', {
         'cs_posts': cs_posts,
         'eng_posts': eng_posts,
-        'engl_posts': engl_posts
+        'engl_posts': engl_posts, 
+        'ds_posts': ds_posts,
+        'math_posts': math_posts
     })
 
 

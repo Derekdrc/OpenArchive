@@ -11,7 +11,7 @@
         
         <h2>Abstract</h2>
         <p>{{ post.abstract }}</p>
-        <a class="download" target="_blank" href="{{ post.pdf_file.url }}">View PDF</a>
+        <a class="download" target="_blank" rel="noopener noreferrer" href="{{ post.pdf_file.url }}">View PDF</a>
         <p>Submitted on: {{ post.date }} by {{ post.uploader }}</p>
         <p>Affiliated with {{ post.affiliation }}</p> 
 

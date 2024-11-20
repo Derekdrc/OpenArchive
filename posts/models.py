@@ -10,6 +10,8 @@ SUBJECT_CHOICES = (
     ('Arch', 'Architecture'),
     ('Bus', 'Business'),
     ('Com', 'Communications'),
+    ('Math', 'Mathematics'),
+    ('DS', 'Data Science')
 )
 
 LICENSE_CHOICES = (
@@ -32,7 +34,7 @@ class Post(models.Model):
     #banner = models.ImageField(default='fallback.png', blank=True)
     pdf_file = models.FileField()
     license = models.CharField(max_length=8, choices=LICENSE_CHOICES, default='CC BY')
-    uploader = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    uploader = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.title

@@ -52,5 +52,37 @@
     {% empty %}
         <p>No posts in English.</p>
     {% endfor %}
+
+    <h1 class="post_label">Data Science</h1>
+    {% for post in ds_posts %}
+        <article class="post">
+            <h2>
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p>{{ post.date }} by {{ post.authors }}</p>
+            <p>{{ post.body }}</p>
+        </article>
+    {% empty %}
+        <p>No posts in Data Science.</p>
+    {% endfor %}
+
+    <h1 class="post_label">Mathematics</h1>
+    {% for post in math_posts %}
+        <article class="post">
+            <h2>
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p>{{ post.date }} by {{ post.authors }}</p>
+            <p>{{ post.body }}</p>
+        </article>
+    {% empty %}
+        <p>No posts in Mathematics.</p>
+    {% endfor %}
+
+
 </section>
 {% endblock %}
