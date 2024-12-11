@@ -144,13 +144,13 @@ a:hover {
     font-size: 3rem;
 }
 
-.post_label{
+h1.post_label{
     color:#bac2de;
     font-size: 2.5rem;
     text-decoration: underline;
 }
 
-.post_title {
+h2.post_title {
     color:#bac2de;
     font-size: 2rem;
 }

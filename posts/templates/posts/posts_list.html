@@ -8,11 +8,11 @@
 <section>
     <h1>Posts</h1>
 
-    <h1 class="post_label">Computer Science</h1>
+    <h1 class="post_label" style="color: #bac2de; font-size: 4.5rem; text-decoration: underline;">Computer Science</h1>
     {% for post in cs_posts %}
         <article class="post">
             <h2>
-                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}" style="color: #bac2de; font-size: 2rem;">
                     {{ post.title }}
                 </a>
             </h2>
@@ -23,11 +23,11 @@
         <p>No posts in Computer Science.</p>
     {% endfor %}
 
-    <h1 class="post_label">Engineering</h1>
+    <h1 class="post_label" style="color: #bac2de; font-size: 4.5rem; text-decoration: underline;">Engineering</h1>
     {% for post in eng_posts %}
         <article class="post">
             <h2>
-                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}" style="color: #bac2de; font-size: 2rem;">
                     {{ post.title }}
                 </a>
             </h2>
@@ -42,7 +42,7 @@
     {% for post in engl_posts %}
         <article class="post">
             <h2>
-                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}" style="color: #bac2de; font-size: 2rem;">
                     {{ post.title }}
                 </a>
             </h2>
@@ -53,11 +53,11 @@
         <p>No posts in English.</p>
     {% endfor %}
 
-    <h1 class="post_label">Data Science</h1>
+    <h1 class="post_label" style="color: #bac2de; font-size: 4.5rem; text-decoration: underline;">Data Science</h1>
     {% for post in ds_posts %}
         <article class="post">
             <h2>
-                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}" style="color: #bac2de; font-size: 2rem;">
                     {{ post.title }}
                 </a>
             </h2>
@@ -68,11 +68,11 @@
         <p>No posts in Data Science.</p>
     {% endfor %}
 
-    <h1 class="post_label">Mathematics</h1>
+    <h1 class="post_label" style="color: #bac2de; font-size: 4.5rem; text-decoration: underline;">Mathematics</h1>
     {% for post in math_posts %}
         <article class="post">
             <h2>
-                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}">
+                <a class="post_title" href="{% url 'posts:page' slug=post.slug %}" style="color: #bac2de; font-size: 2rem;">
                     {{ post.title }}
                 </a>
             </h2>
