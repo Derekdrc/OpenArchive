@@ -7,4 +7,12 @@
 {% block content%}
     <h2>Welcome to the Lawrence Technological University Open Archive Website!</h2>
     <p>This website aims to serve as a host for all of the wonderful presentation day research papers in all the schools of LTU.</p>
+
+
+    <!-- Add a search form here -->
+    <form method="get" action="{% url 'posts:search' %}">
+        <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
 {% endblock %}
