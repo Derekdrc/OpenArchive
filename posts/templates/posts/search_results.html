@@ -1,0 +1,93 @@
+{% block content %}
+<section>
+    <h2>Search Results for "{{ query }}"</h2>
+
+    <form method="get" action="{% url 'posts:search' %}">
+        <input type="text" name="q" placeholder="Search by keyword...">
+        <button type="submit">Search</button>
+    </form>
+    
+
+    {% comment %} this was previously here after the one above {% if query %}
+    <form method="get" action="{% url 'posts:search' %}">
+        {% csrf_token %}
+        <label for="q">Keyword:</label>
+        <input type="text" id="q" name="q" value="{{ query }}" placeholder="Search by keyword...">
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ title }}" placeholder="Search by title...">
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="{{ author }}" placeholder="Search by author...">
+
+        <label for="affiliation">Affiliation:</label>
+        <input type="text" id="affiliation" name="affiliation" value="{{ affiliation }}" placeholder="Search by affiliation...">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ date }}">
+
+        <button type="submit">Search</button>
+    </form>
+    {% endif %} {% endcomment %}
+
+
+<!-- Button to Toggle Advanced Search -->
+    <button type="button" onclick="toggleAdvancedSearch()">Advanced Search</button>
+
+<!-- Advanced Search Form (Hidden by Default) -->
+    <div id="advanced-search" style="display:none;">
+        <form method="get" action="{% url 'posts:search' %}">
+            {% csrf_token %}
+            <label for="q">Keyword:</label>
+            <input type="text" id="q" name="q" value="{{ query }}" placeholder="Search by keyword...">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ title }}" placeholder="Search by title...">
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" value="{{ author }}" placeholder="Search by author...">
+
+            <label for="affiliation">Affiliation:</label>
+            <input type="text" id="affiliation" name="affiliation" value="{{ affiliation }}" placeholder="Search by affiliation...">
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="{{ date }}">
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+
+
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{% url 'posts:page' slug=post.slug %}">{{ post.title }}</a>
+                    <br>
+                    <strong>Authors:</strong> {{ post.authors }}<br>
+                    <strong>Affiliation:</strong> {{ post.affiliation }}<br>
+                    <strong>Subject:</strong> {{ post.subject }}<br>
+                    <strong>Date:</strong> {{ post.date|date:"F j, Y" }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts found matching "{{ query }}".</p>
+    {% endif %}
+</section>
+ {% comment %} {% endblock %} <-- previously here {% endcomment %}
+
+{% comment %} trying this out {% endcomment %}
+<script>
+    // Function to toggle the visibility of the advanced search form
+    function toggleAdvancedSearch() {
+        var advancedSearch = document.getElementById('advanced-search');
+        if (advancedSearch.style.display === "none") {
+            advancedSearch.style.display = "block";
+        } else {
+            advancedSearch.style.display = "none";
+        }
+    }
+</script>
+{% endblock %}
