@@ -48,6 +48,7 @@ def search(request):
     author = request.GET.get('author', '')
     affiliation = request.GET.get('affiliation', '')
     date = request.GET.get('date', '')
+    subject = request.GET.get('subject', '')
 
     # Start with an empty Q object
     filters = Q()
@@ -63,6 +64,8 @@ def search(request):
         filters &= Q(affiliation__icontains=affiliation)
     if date:
         filters &= Q(date__date=date)  # Use `date__date` for exact match on date fields
+    if subject:
+        filters &= Q(subject__icontains=subject)
 
     # Execute the query
     posts = Post.objects.filter(filters).distinct()
@@ -74,6 +77,7 @@ def search(request):
         'author': author,
         'affiliation': affiliation,
         'date': date,
+        'subject': subject
     })
     # query = request.GET.get('q', '')
     # if query:
