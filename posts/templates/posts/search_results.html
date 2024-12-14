@@ -41,7 +41,7 @@
         <form method="get" action="{% url 'posts:search' %}">
             {% csrf_token %}
             <label for="q">Keyword:</label>
-            <input type="text" id="q" name="q" value="{{ query }}" placeholder="Search by keyword...">
+            <input type="text" id="q" name="q" value="{{ keyword }}" placeholder="Search by keyword...">
 
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" value="{{ title }}" placeholder="Search by title...">
