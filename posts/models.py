@@ -40,28 +40,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
-    #testing with these for validation
-    def clean(self):
-        # Ensure authors have valid format
-        if not all(name.strip().isalpha() for name in self.authors.split(',')):
-            raise ValidationError(_('Authors should only contain full names separated by commas.'))
-
-        # Ensure keywords are separated by commas and non-empty
-        if not all(keyword.strip() for keyword in self.keywords.split(',')):
-            raise ValidationError(_('Each keyword must be non-empty and separated by commas.'))
-
-        # Validate the subject field
-        if self.subject not in dict(SUBJECT_CHOICES):
-            raise ValidationError(_('Invalid subject selected.'))
-
-        # Ensure the PDF file is provided
-        if not self.pdf_file:
-            raise ValidationError(_('A PDF file must be uploaded.'))
-
-    def save(self, *args, **kwargs):
-        # Ensure clean is called before saving
-        self.full_clean()
-        super().save(*args, **kwargs)
-
 
