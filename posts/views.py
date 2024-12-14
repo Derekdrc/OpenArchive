@@ -41,50 +41,37 @@ def post_new(request):
         form = forms.CreatePost()
     return render(request, 'posts/post_new.html', { 'form': form })
 
-# added view definition to handle the search
+# added view definition to handle the search - testing with strip
 def search(request):
-    query = request.GET.get('q', '')
-    title = request.GET.get('title', '')
-    author = request.GET.get('author', '')
-    affiliation = request.GET.get('affiliation', '')
-    date = request.GET.get('date', '')
+    query = request.GET.get('q', '').strip()
+    title = request.GET.get('title', '').strip()
+    author = request.GET.get('author', '').strip()
+    affiliation = request.GET.get('affiliation', '').strip()
+    date = request.GET.get('date', '').strip()
 
-
-    #trying this out
     posts = Post.objects.all()
 
-    # Build the query
-    #filters = Q()
-
-    #trying posts... here
+    # Ensure we reset results for an empty query - testing for error in search
+    if not query and not title and not author and not affiliation and not date:
+       return render(request, 'posts/search_results.html', {'query': '', 'posts': []})
+    
     if query:
         posts = posts.filter(Q(keywords__icontains=query) | Q(subject__icontains=query))
     if title: #got rid of the &= and Q
-        posts = posts.filter(title__icontains=title)
+        posts = posts.filter(Q(title__icontains=title))
     if author:
-        posts = posts.filter(authors__icontains=author)
+        posts = posts.filter(Q(authors__icontains=author))
     if affiliation:
-        posts = posts.filter(affiliation__icontains=affiliation)
+        posts = posts.filter(Q(affiliation__icontains=affiliation))
     if date:
-        posts = posts.filter(date=date)
-
-    # Execute the query
-    #posts = Post.objects.filter(filters).distinct()
+        posts = posts.filter(Q(date=date))
 
     return render(request, 'posts/search_results.html', {
-        'posts': posts,
         'query': query,
         'title': title,
         'author': author,
         'affiliation': affiliation,
         'date': date,
+        'posts': posts
     })
-    # query = request.GET.get('q', '')
-    # if query:
-    #     # Assuming your Post model has a title, body, and/or authors field          testing date filter
-    #     posts = Post.objects.filter(title__icontains=query) | Post.objects.filter(abstract__icontains=query) | Post.objects.filter(authors__icontains=query) | Post.objects.filter(affiliation__icontains=query) | Post.objects.filter(subject__icontains=query) | Post.objects.filter(date__icontains=query) 
-    # else:
-    #     posts = Post.objects.none()  # If no query, return no posts
-    # #form =  SearchForm(request.GET)
-    # return render(request, 'posts/search_results.html', {'posts': posts, 'query': query})
-
+  

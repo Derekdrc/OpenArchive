@@ -5,33 +5,9 @@
     <form method="get" action="{% url 'posts:search' %}">
         <input type="text" name="q" placeholder="Search by keyword...">
         <button type="submit">Search</button>
-    </form>
-    
+    </form> 
 
-    {% comment %} this was previously here after the one above {% if query %}
-    <form method="get" action="{% url 'posts:search' %}">
-        {% csrf_token %}
-        <label for="q">Keyword:</label>
-        <input type="text" id="q" name="q" value="{{ query }}" placeholder="Search by keyword...">
-
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="{{ title }}" placeholder="Search by title...">
-
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" value="{{ author }}" placeholder="Search by author...">
-
-        <label for="affiliation">Affiliation:</label>
-        <input type="text" id="affiliation" name="affiliation" value="{{ affiliation }}" placeholder="Search by affiliation...">
-
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" value="{{ date }}">
-
-        <button type="submit">Search</button>
-    </form>
-    {% endif %} {% endcomment %}
-
-
-<!-- Button to Toggle Advanced Search -->
+<!-- Button to Toggle Advanced Search and added the value option above for testing ^--> 
     <button type="button" onclick="toggleAdvancedSearch()">Advanced Search</button>
 
 <!-- Advanced Search Form (Hidden by Default) -->
@@ -56,8 +32,6 @@
             <button type="submit">Search</button>
         </form>
     </div>
-
-
 
     {% if posts %}
         <ul>
