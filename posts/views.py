@@ -49,27 +49,23 @@ def search(request):
     affiliation = request.GET.get('affiliation', '')
     date = request.GET.get('date', '')
 
+    # Start with an empty Q object
+    filters = Q()
 
-    #trying this out
-    posts = Post.objects.all()
-
-    # Build the query
-    #filters = Q()
-
-    #trying posts... here
+    # Apply filters dynamically
     if query:
-        posts = posts.filter(Q(keywords__icontains=query) | Q(subject__icontains=query))
-    if title: #got rid of the &= and Q
-        posts = posts.filter(title__icontains=title)
+        filters |= Q(keywords__icontains=query) | Q(subject__icontains=query) | Q(abstract__icontains=query)
+    if title:
+        filters &= Q(title__icontains=title)
     if author:
-        posts = posts.filter(authors__icontains=author)
+        filters &= Q(authors__icontains=author)
     if affiliation:
-        posts = posts.filter(affiliation__icontains=affiliation)
+        filters &= Q(affiliation__icontains=affiliation)
     if date:
-        posts = posts.filter(date=date)
+        filters &= Q(date__date=date)  # Use `date__date` for exact match on date fields
 
     # Execute the query
-    #posts = Post.objects.filter(filters).distinct()
+    posts = Post.objects.filter(filters).distinct()
 
     return render(request, 'posts/search_results.html', {
         'posts': posts,
