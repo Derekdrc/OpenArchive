@@ -41,7 +41,7 @@ def post_new(request):
         form = forms.CreatePost()
     return render(request, 'posts/post_new.html', { 'form': form })
 
-# added view definition to handle the search
+# added view definition to handle the search - testing with strip
 def search(request):
     query = request.GET.get('q', '')
     title = request.GET.get('title', '')
@@ -71,7 +71,6 @@ def search(request):
     posts = Post.objects.filter(filters).distinct()
 
     return render(request, 'posts/search_results.html', {
-        'posts': posts,
         'query': query,
         'title': title,
         'author': author,
@@ -79,12 +78,4 @@ def search(request):
         'date': date,
         'subject': subject
     })
-    # query = request.GET.get('q', '')
-    # if query:
-    #     # Assuming your Post model has a title, body, and/or authors field          testing date filter
-    #     posts = Post.objects.filter(title__icontains=query) | Post.objects.filter(abstract__icontains=query) | Post.objects.filter(authors__icontains=query) | Post.objects.filter(affiliation__icontains=query) | Post.objects.filter(subject__icontains=query) | Post.objects.filter(date__icontains=query) 
-    # else:
-    #     posts = Post.objects.none()  # If no query, return no posts
-    # #form =  SearchForm(request.GET)
-    # return render(request, 'posts/search_results.html', {'posts': posts, 'query': query})
-
+  
