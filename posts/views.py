@@ -53,7 +53,7 @@ def search(request):
     # Start with an empty Q object
     filters = Q()
 
-    # Apply filters dynamically
+    #Apply filters dynamically
     if query:
         filters |= Q(keywords__icontains=query) | Q(subject__icontains=query) | Q(abstract__icontains=query)
     if title:
@@ -67,8 +67,15 @@ def search(request):
     if subject:
         filters &= Q(subject__icontains=subject)
 
+# Build the query dynamically based on the input fields
+    #posts = Post.objects.all()  # Start with all posts
+
     # Execute the query
     posts = Post.objects.filter(filters).distinct()
+
+        # Ensure we reset results for an empty query - testing for error in search
+    if not query and not title and not author and not affiliation and not date:
+       return render(request, 'posts/search_results.html', {'query': '', 'posts': []})
 
     return render(request, 'posts/search_results.html', {
         'posts': posts,
@@ -79,12 +86,4 @@ def search(request):
         'date': date,
         'subject': subject
     })
-    # query = request.GET.get('q', '')
-    # if query:
-    #     # Assuming your Post model has a title, body, and/or authors field          testing date filter
-    #     posts = Post.objects.filter(title__icontains=query) | Post.objects.filter(abstract__icontains=query) | Post.objects.filter(authors__icontains=query) | Post.objects.filter(affiliation__icontains=query) | Post.objects.filter(subject__icontains=query) | Post.objects.filter(date__icontains=query) 
-    # else:
-    #     posts = Post.objects.none()  # If no query, return no posts
-    # #form =  SearchForm(request.GET)
-    # return render(request, 'posts/search_results.html', {'posts': posts, 'query': query})
 
