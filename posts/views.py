@@ -5,6 +5,7 @@ from . import forms
 from django.db.models import Q
 #from .forms import SearchForm #change here
 
+# Jacqueline Albo
 # Create your views here.
 
 
