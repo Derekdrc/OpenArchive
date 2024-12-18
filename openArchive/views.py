@@ -1,4 +1,5 @@
 #from django.http import HttpResponse
+#Django tutorial and Derek D'Arcy
 from django.shortcuts import render
 
 def homepage(request):

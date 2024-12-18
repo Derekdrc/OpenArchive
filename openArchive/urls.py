@@ -1,3 +1,4 @@
+"""Django tutorial and Derek D'Arcy"""
 """
 URL configuration for openArchive project.
 

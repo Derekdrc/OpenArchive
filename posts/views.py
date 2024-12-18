@@ -5,10 +5,10 @@ from . import forms
 from django.db.models import Q
 #from .forms import SearchForm #change here
 
-# Jacqueline Albo
+# Derek D'arcy and Jacqueline Albo
 # Create your views here.
 
-
+#Derek D'Arcy
 def posts_list(request):
     cs_posts = Post.objects.filter(subject="CS")
     eng_posts = Post.objects.filter(subject="Eng")
@@ -42,6 +42,7 @@ def post_new(request):
         form = forms.CreatePost()
     return render(request, 'posts/post_new.html', { 'form': form })
 
+#Jacqueline Albo
 # added view definition to handle the search
 def search(request):
     query = request.GET.get('q', '')

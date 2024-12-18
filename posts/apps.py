@@ -1,3 +1,4 @@
+#Tutorial and Derek D'Arcy
 from django.apps import AppConfig
 
 

@@ -1,3 +1,5 @@
+""" Django tutorial and Derek D'Arcy"""
+
 """
 Django settings for openArchive project.
 
